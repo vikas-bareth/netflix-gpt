@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Header from "./Header";
+import validateForm from "../utils/validateForm";
 
 const Login = () => {
   const [isRegistered, setIsRegistered] = useState(true);
+  const [formErrMsg, setFormErrMsg] = useState(null);
+  const email = useRef(null);
+  const password = useRef(null);
   function handleRegisterClick() {
     setIsRegistered(!isRegistered);
+  }
+  function handleSubmitClick() {
+    // validateForm(email,password)
+    const msg = validateForm(email.current.value, password.current.value);
+    setFormErrMsg(msg);
   }
   return (
     <div
@@ -18,11 +27,7 @@ h-screen"
             <h1 className="text-start font-sans font-bold text-3xl text-white">
               {isRegistered ? "Sign In" : "Sign Up"}
             </h1>
-            <form
-              className="mt-6"
-              autoComplete="off"
-              onSubmit={(e) => e.preventDefault()}
-            >
+            <form className="mt-6" onSubmit={(e) => e.preventDefault()}>
               {!isRegistered && (
                 <div className="relative mb-5">
                   <input
@@ -41,10 +46,11 @@ h-screen"
               )}
               <div className="relative mb-5">
                 <input
-                  type="email"
+                  type="text"
                   id="email"
                   className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-100 bg-gray-900 bg-opacity-70 rounded-lg border-1 border-gray-300 appearance-none focus:ring-0 peer"
                   placeholder=" "
+                  ref={email}
                 />
                 <label
                   htmlFor="email"
@@ -55,10 +61,11 @@ h-screen"
               </div>
               <div className="relative">
                 <input
-                  type="text"
+                  type="password"
                   id="password"
                   className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-100 bg-gray-900 bg-opacity-70 rounded-lg border-1 border-gray-300 appearance-none focus:ring-0 peer"
                   placeholder=" "
+                  ref={password}
                 />
                 <label
                   htmlFor="password"
@@ -67,7 +74,13 @@ h-screen"
                   Password
                 </label>
               </div>
-              <button className="bg-red-600 hover:bg-red-700 cursor-pointer px-3 py-2 text-white font-bold w-full mt-5">
+              <div className="mt-1">
+                <p className="text-red-500 font-sans">{formErrMsg}</p>
+              </div>
+              <button
+                className="bg-red-600 hover:bg-red-700 cursor-pointer px-3 py-2 text-white font-bold w-full mt-5"
+                onClick={handleSubmitClick}
+              >
                 {isRegistered ? "Sign In" : "Sign Up"}
               </button>
             </form>

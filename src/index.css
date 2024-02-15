@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+input:autofill {
+  border:1px solid rgb(209 213 219);
+  border-radius: 0.5rem;
+  }
+  
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px rgb(17 24 39)  inset !important;
+    -webkit-text-fill-color: white !important;
+  }
