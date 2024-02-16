@@ -1,12 +1,21 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import validateForm from "../utils/validateForm";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isRegistered, setIsRegistered] = useState(true);
   const [formErrMsg, setFormErrMsg] = useState(null);
   const email = useRef(null);
   const password = useRef(null);
+  const name = useRef(null);
+  const navigate = useNavigate();
   function handleRegisterClick() {
     setIsRegistered(!isRegistered);
   }
@@ -14,6 +23,56 @@ const Login = () => {
     // validateForm(email,password)
     const msg = validateForm(email.current.value, password.current.value);
     setFormErrMsg(msg);
+    if (msg) return;
+    if (!isRegistered) {
+      //register logic
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          //signed up
+          const user = userCredential.user;
+          console.log(user);
+          updateProfile(auth.currentUser, {
+            displayName: name.current.value,
+            photoURL: "https://i.imgur.com/6FgZxbi.png",
+          })
+            .then(() => {
+              // Profile updated!
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              setFormErrMsg(error.message);
+            });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setFormErrMsg(errorCode + "-" + errorMessage);
+          // ..
+        });
+    } else {
+      //login logic
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setFormErrMsg(errorCode + "-" + errorMessage);
+        });
+    }
   }
   return (
     <div
@@ -21,7 +80,6 @@ const Login = () => {
 h-screen"
     >
       <div className="bg-black h-full bg-opacity-50">
-        <Header />
         <section className="flex flex-col justify-center items-center w-full mt-10">
           <div className="bg-black bg-opacity-65 p-10  sm:w-3/12">
             <h1 className="text-start font-sans font-bold text-3xl text-white">
@@ -33,6 +91,7 @@ h-screen"
                   <input
                     type="text"
                     id="Name"
+                    ref={name}
                     className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-100 bg-gray-900 bg-opacity-70 rounded-lg border-1 border-gray-300 appearance-none focus:ring-0 peer"
                     placeholder=" "
                   />

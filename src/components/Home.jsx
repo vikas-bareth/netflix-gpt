@@ -8,7 +8,6 @@ const Home = () => {
     h-screen"
     >
       <div className="bg-black h-full bg-opacity-50">
-        <Header />
         <section className=" flex flex-col justify-center items-center">
           <div className="text-center text-white ">
             <h1 className="font-extrabold text-5xl py-7">
