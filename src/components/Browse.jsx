@@ -4,7 +4,7 @@ import Header from "./Header";
 const Browse = () => {
   return (
     <div>
-      <h1>browse</h1>
+      <h1 className="text-2xl text-white text-center">browse</h1>
     </div>
   );
 };
