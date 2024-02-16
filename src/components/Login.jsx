@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import Header from "./Header";
 import validateForm from "../utils/validateForm";
 import {
   createUserWithEmailAndPassword,
@@ -7,15 +6,25 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isRegistered, setIsRegistered] = useState(true);
   const [formErrMsg, setFormErrMsg] = useState(null);
+  const iconUrls = [
+    "https://i.imgur.com/6FgZxbi.png",
+    "https://i.imgur.com/OnOEIhZ.png",
+    "https://i.imgur.com/dk4Wyhp.png",
+    "https://i.imgur.com/AFN9X8K.png",
+    "https://i.imgur.com/YkyLA3e.png",
+  ];
+  console.log(iconUrls.length);
+  const randomImg = Math.floor(Math.random() * iconUrls.length + 1);
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   function handleRegisterClick() {
     setIsRegistered(!isRegistered);
   }
@@ -34,14 +43,21 @@ const Login = () => {
         .then((userCredential) => {
           //signed up
           const user = userCredential.user;
-          console.log(user);
-          updateProfile(auth.currentUser, {
+          updateProfile(user, {
             displayName: name.current.value,
-            photoURL: "https://i.imgur.com/6FgZxbi.png",
+            photoURL: iconUrls[randomImg],
           })
             .then(() => {
               // Profile updated!
-              navigate("/browse");
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
             })
             .catch((error) => {
               // An error occurred
@@ -64,7 +80,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
           // ...
         })
         .catch((error) => {

@@ -3,6 +3,8 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import Browse from "./components/Browse";
 import Body from "./components/Body";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 
 function App() {
@@ -27,7 +29,9 @@ function App() {
   ]);
   return (
     <div>
+       <Provider store={appStore}>
        <RouterProvider router={appRouter}></RouterProvider>
+       </Provider>
     </div>
   );
 }
