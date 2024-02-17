@@ -43,7 +43,7 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
   return (
-    <div className="flex justify-between items-center container mx-auto py-4 p-3 ">
+    <div className="flex justify-between items-center container mx-auto py-4 p-3 absolute bg-gradient-to-b from-black z-10 px-8 min-w-full">
       <div>
         <Link to={"/"}>
           <img src={LOGO} alt="" className="w-32" />

@@ -83,8 +83,8 @@ const Login = () => {
     }
   }
   return (
-    <section className="flex flex-col justify-center items-center w-full mt-10">
-      <div className="bg-black bg-opacity-65 p-10  sm:w-3/12">
+    <section className="flex flex-col justify-center items-center w-full ">
+      <div className="bg-black bg-opacity-65 p-10  sm:w-3/12 mt-32">
         <h1 className="text-start font-sans font-bold text-3xl text-white">
           {isRegistered ? "Sign In" : "Sign Up"}
         </h1>
