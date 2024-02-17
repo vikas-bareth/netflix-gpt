@@ -1,9 +1,14 @@
 import React from "react";
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
+import MainContainer from "./MainContainer";
+import SecondaryContainer from "./SecondaryContainer";
 
 const Browse = () => {
+  useNowPlayingMovies();
   return (
-    <div>
-      <h1 className="text-2xl text-white text-center">browse</h1>
+    <div className="">
+      <MainContainer />
+      <SecondaryContainer />
     </div>
   );
 };

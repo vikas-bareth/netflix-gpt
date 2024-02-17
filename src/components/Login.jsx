@@ -8,19 +8,12 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
   const [isRegistered, setIsRegistered] = useState(true);
   const [formErrMsg, setFormErrMsg] = useState(null);
-  const iconUrls = [
-    "https://i.imgur.com/6FgZxbi.png",
-    "https://i.imgur.com/OnOEIhZ.png",
-    "https://i.imgur.com/dk4Wyhp.png",
-    "https://i.imgur.com/AFN9X8K.png",
-    "https://i.imgur.com/YkyLA3e.png",
-  ];
-  console.log(iconUrls.length);
-  const randomImg = Math.floor(Math.random() * iconUrls.length + 1);
+  const randomImg = Math.floor(Math.random() * USER_AVATAR.length + 1);
   const email = useRef(null);
   const password = useRef(null);
   const name = useRef(null);
@@ -45,7 +38,7 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL: iconUrls[randomImg],
+            photoURL: USER_AVATAR[randomImg],
           })
             .then(() => {
               // Profile updated!
