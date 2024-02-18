@@ -5,6 +5,7 @@ import Browse from "./components/Browse";
 import Body from "./components/Body";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import GptHome from "./components/GptHome";
 
 
 function App() {
