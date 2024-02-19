@@ -6,12 +6,18 @@ import { auth } from "../utils/firebase";
 import { addUser, removeUser } from "../utils/userSlice";
 import { LOGO } from "../utils/constants";
 import { toggleGptSearch } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/configSlice";
+import lang from "../utils/languageConstants";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+  const langKey = useSelector((store) => store.config.lang);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  function handleLangChange(e) {
+    dispatch(changeLanguage(e.target.value));
+  }
   function handleSignOut() {
     signOut(auth)
       .then(() => {
@@ -54,14 +60,28 @@ const Header = () => {
           <img src={LOGO} alt="" className="w-32" />
         </Link>
       </div>
-      <div>
+      <div className="flex gap-3 items-center">
+        <div>
+          <select
+            onChange={(e) => handleLangChange(e)}
+            name=""
+            id=""
+            className="py-3 px-2 rounded-lg bg-gray-700 bg-opacity-50 hover:border hover:bg-gray-900 text-white font-semibold"
+          >
+            <option value="en">English</option>
+            <option value="hindi">हिन्दी</option>
+            <option value="spanish">español</option>
+          </select>
+        </div>
         {user ? (
           <div className="flex">
             <button
               className="py-2 px-5 rounded text-white bg-violet-600 font-medium hover:bg-violet-800 me-2"
               onClick={handleGptClick}
             >
-              {showGptSearch ? "Homepage" : "GPT Search"}
+              {showGptSearch
+                ? `${lang[langKey].homepage}`
+                : `${lang[langKey].gptSearch}`}
             </button>
             <img
               src={user?.photoURL}
@@ -73,7 +93,7 @@ const Header = () => {
               className="bg-red-600 hover:bg-red-700 cursor-pointer py-2 px-4 rounded text-white font-semibold"
               onClick={handleSignOut}
             >
-              Sign out
+              {lang[langKey].signout}
             </button>
           </div>
         ) : (
@@ -81,7 +101,7 @@ const Header = () => {
             to={"/login"}
             className=" py-2 px-5 rounded text-white bg-red-600 font-medium hover:bg-red-700"
           >
-            Sign in
+            {lang[langKey].singin}
           </Link>
         )}
       </div>
