@@ -16,7 +16,14 @@
       topRatedTv:"Top Rated TV Shows",
       popularTv:"Popular TV Shows",
       movieTitle:"Elemental",
-      movieOverview:"In a city where fire, water, land, and air residents live together, a fiery young woman and a go-with-the-flow guy discover something elemental: how much they actually have in common."
+      movieOverview:"In a city where fire, water, land, and air residents live together, a fiery young woman and a go-with-the-flow guy discover something elemental: how much they actually have in common.",
+      welcomeMsg:"Welcome to Netflix GPT",
+      featureMsg:"Watch anywhere. Cancel anytime.",
+      loggedInMsg:"Discover the perfect movie or TV show for every mood - from now playing to top-rated favorites. Sit back, relax, and let the entertainment begin!",
+      browseBtn:"Browse",
+      loggedOutMsg:"Ready to watch? Enter your email to create or restart your membership.",
+      getStartedBtn:"Get Started",
+      emailPlaceholder:"Email address"
     },
     hindi: {
       search: "खोज",
@@ -35,9 +42,14 @@
       topRatedTv:"टॉप रेटेड टीवी शो",
       popularTv:"लोकप्रिय टीवी शो",
       movieTitle:"एलिमेंटल",
-      movieOverview:"एक ऐसे शहर में जहां आग, पानी, जमीन और हवा के निवासी एक साथ रहते हैं, एक उग्र युवा महिला और प्रवाह के साथ चलने वाला लड़का कुछ मौलिक खोजता है: वास्तव में उनमें कितनी समानताएं हैं।"
-
-
+      movieOverview:"एक ऐसे शहर में जहां आग, पानी, जमीन और हवा के निवासी एक साथ रहते हैं, एक उग्र युवा महिला और प्रवाह के साथ चलने वाला लड़का कुछ मौलिक खोजता है: वास्तव में उनमें कितनी समानताएं हैं।",
+      welcomeMsg:"नेटफ्लिक्स जीपीटी में आपका स्वागत है",
+      featureMsg:"कहीं भी देखें. किसी भी समय रद्द करें.",
+      loggedInMsg:"हर मूड के लिए उपयुक्त मूवी या टीवी शो खोजें - अब प्लेइंग से लेकर टॉप-रेटेड पसंदीदा तक। आराम से बैठें, आराम करें और मनोरंजन शुरू करें!",
+      browseBtn:"ब्राउज़",
+      loggedOutMsg:"देखने के लिए तैयार हैं? अपनी सदस्यता बनाने या पुनः आरंभ करने के लिए अपना ईमेल दर्ज करें।",
+      getStartedBtn:"शुरू करें",
+      emailPlaceholder:"मेल पता"
 
     },
     spanish: {
@@ -57,7 +69,14 @@
       topRatedTv:"programas de televisión mejor valorados",
       popularTv:"programas de televisión populares",
       movieTitle:"Elemental",
-      movieOverview:"En una ciudad donde conviven residentes del fuego, el agua, la tierra y el aire, una joven apasionada y un hombre que se deja llevar descubren algo elemental: cuánto tienen realmente en común."
+      movieOverview:"En una ciudad donde conviven residentes del fuego, el agua, la tierra y el aire, una joven apasionada y un hombre que se deja llevar descubren algo elemental: cuánto tienen realmente en común.",
+      welcomeMsg:"Bienvenido a Netflix GPT",
+      featureMsg:"Mira en cualquier lugar. Cancele en cualquier momento.",
+      loggedInMsg:"Descubra la película o el programa de televisión perfecto para cada estado de ánimo: desde ahora hasta los favoritos mejor calificados. ¡Siéntese, relájese y deje que comience el entretenimiento!",
+      browseBtn:"Navegar",
+      loggedOutMsg:"¿Listo para mirar? Ingrese su correo electrónico para crear o reiniciar su membresía.",
+      getStartedBtn:"Empezar",
+      emailPlaceholder:"dirección de correo electrónico"
 
     },
   };

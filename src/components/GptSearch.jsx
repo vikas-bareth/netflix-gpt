@@ -1,12 +1,14 @@
 import React, { useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import lang from "../utils/languageConstants";
 import openai from "../utils/openai";
 import { API_OPTIONS } from "../utils/constants";
+import { addMovieResults } from "../utils/gptSlice";
 
 const GptSearch = () => {
   const langKey = useSelector((store) => store.config.lang);
   const searchQuery = useRef(null);
+  const dispatch = useDispatch();
 
   async function tmdbMovieSearchApiCall(movie) {
     const data = await fetch(
@@ -14,7 +16,7 @@ const GptSearch = () => {
       API_OPTIONS
     );
     const queryMovies = await data.json();
-    console.log(queryMovies.results);
+
     return queryMovies.results;
   }
 
@@ -35,12 +37,18 @@ const GptSearch = () => {
 
     const gptMovies = gptResults.choices[0].message?.content.split(",");
     //now for each movie make tmdb search api call but they all return a promise so it's a promise array
-    const promiseArray = gptMovies.map((movie) => {
-      tmdbMovieSearchApiCall(movie);
-    });
+    // // const promiseArray = gptMovies.map((movie) =>
+    // //   tmdbMovieSearchApiCall(movie)
+    // );
+    const promiseArray = gptMovies.map((movie) =>
+      tmdbMovieSearchApiCall(movie)
+    );
     //now resolve those promise using promise api promise.all
     const resolvedResults = await Promise.all(promiseArray);
     console.log(resolvedResults);
+    dispatch(
+      addMovieResults({ movieResults: resolvedResults, movieNames: gptMovies })
+    );
   }
   return (
     <div className="pt-32 flex justify-center">
