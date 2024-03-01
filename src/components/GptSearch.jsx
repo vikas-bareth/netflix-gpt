@@ -52,14 +52,14 @@ const GptSearch = () => {
   }
   return (
     <div className="pt-32 flex justify-center">
-      <div className="bg-black bg-opacity-65 p-10 w-5/12 mt-32">
+      <div className="bg-black bg-opacity-65 p-10 w-11/12 lg:w-6/12 md:5/12 mt-28 md:mt-32">
         <form action="" onSubmit={(e) => e.preventDefault()}>
-          <div className="grid grid-cols-12">
-            <div className="relative mb-5 col-span-8">
+          <div className="flex flex-col justify-center sm:flex-row">
+            <div className="relative mb-5 col-span-8 w-full">
               <input
                 type="text"
                 id="text"
-                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-100 bg-gray-900 bg-opacity-70 rounded-lg border-1 border-gray-300 appearance-none focus:ring-0 peer"
+                className="w-full block px-2.5 pb-2.5 pt-4 text-sm text-gray-100 bg-gray-900 bg-opacity-70 rounded-lg border-1 border-gray-300 appearance-none focus:ring-0 peer"
                 placeholder=" "
                 ref={searchQuery}
               />
@@ -73,7 +73,7 @@ const GptSearch = () => {
 
             <div className="col-span-4 flex items-center mb-5 ms-3">
               <button
-                className="py-2 px-5 rounded text-white bg-violet-600 font-medium hover:bg-violet-800 ms-2"
+                className="w-full py-2 px-5 rounded text-white bg-violet-600 font-medium hover:bg-violet-800 ms-2"
                 onClick={handleGptSearchClick}
               >
                 {lang[langKey].search}

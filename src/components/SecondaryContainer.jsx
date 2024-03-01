@@ -10,7 +10,7 @@ const SecondaryContainer = () => {
   const tv = useSelector((store) => store.tv);
   return (
     <div className="bg-black">
-      <div className="-mt-48 pl-12 relative z-20">
+      <div className="mt-0 sm:mt-0 xl:-mt-56 lg:-mt-24 md:-mt-10 md:pl-2 lg:pl-10 relative z-20">
         <MovieList
           title={`${lang[langKey].nowPlaying}`}
           movies={movies.nowPlayingMovies}
